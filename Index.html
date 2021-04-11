@@ -1,68 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html>
+<! --  thanks to albancho >
 <head>
+  <style>
+    body {
+      background-color: #6800E7;
+      margin: 0em;
+      padding: 0em;
+    }
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    .my-game-wrapper {
+      position: relative;
+      display: block;
+      margin: auto;
+      height: 60vh;
+    }
 
-  <title>Bare - Start Bootstrap Template</title>
+    iframe {
+      border: none;
+    }
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    .wrapper {
+      text-align: center
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <!DOCTYPE html>
+  <html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Beispiel:SELFHTML-Beispiel-Grundlayout.css">
+  
+  <script>
+  'use strict';
+  document.addEventListener('DOMContentLoaded', function () {
+   
+     document.Testform.Pizza.addEventListener('change', CheckAuswahl);
+   
+      function CheckAuswahl () {
+      var menu = document.Testform.Pizza;
+      document.querySelector('output').innerHTML = menu.options[menu.selectedIndex].value;	
 
-  <!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <h1 class="mt-5">A Bootstrap 4 Starter Template</h1>
-        <p class="lead">Complete with pre-defined file paths and responsive navigation!</p>
-        <ul class="list-unstyled">
-          <li>Bootstrap 4.5.3</li>
-          <li>jQuery 3.5.1</li>
-        </ul>
-      </div>
-    </div>
+      if(menu.value == "P102"){
+        
+        <a href="https://nijo550.github.io/" target="Fensterlein"></a>
+      
+        alert("test2");
+
+      }	
+      }
+  
+  });
+  </script>
+  <style>
+  output {
+    font-family: courier;
+    font-size: 2em;
+    color: #c32e04;
+  }
+  </style>
+    <title>select-Menu mit value</title>
+  </head>
+  <html>
+    <head>
+    <title>Eigenschaften eingebetteter Frames</title>
+    </head>
+    <body>
+    
+    <h1>Fernsteuerung</h1>
+    
+    <iframe src="startseite.htm" name="Fensterlein" width="500" height="400" marginheight="10" marginwidth="10" align="right">
+    <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen</p>
+    </iframe>
+    <p>
+    <a href="https://nijo550.github.io/" target="Fensterlein"><b>andere Seite</b></a><br>
+    <a href="google.de" target="Fensterlein"><b>erste Seite</b></a>
+    </p>
+    
+    </body>
+    </html>
+  <body>
+
+    
+    <h1>select-Menu mit value</h1>
+   
+   <form name="Testform">
+    <label>Bitte wählen Sie Ihre Pizza-Bestellung:
+      <select name="Pizza"> <!-- size=5 führt zu Multibox-->
+        <option value="P101">Gruppe1</option>
+        <option value="P102">Gruppe2</option>
+        <option value="P103">Pizza Mare</option>
+        <option value="P104">Pizza Tonno</option>
+        <option value="P105">Pizza Mexicana</option>
+        <option value="P106">Pizza Regina</option>
+        <option value="P107">Pizza della Casa</option>
+        <option value="P108">Pizza Calzone</option>
+        <option value="P109">Pizza con tutto</option>
+      </select>
+    </label>
+  </form>
+      
+  <p><output> </output></p>   
+  </body>
+  </html>
+
+  <div class="wrapper">
+    <iframe id="my-game-wrapper" src="http://xxxxxxxxxxxxxxx"
+      width="100%"
+      frameborder="none"
+      seamless="seamless"
+      allowfullscreen="true"
+      scrolling="no"></iframe>
+    <!--
+      <iframe src="https://meet.jit.si/MY-JITSI-ROOM-NAME#config.startWithAudioMuted=false&config.startWithVideoMuted=false&config.prejoinPageEnabled=false&interfaceConfig.SHOW_CHROME_EXTENSION_BANNER=false&interfaceConfig.MOBILE_APP_PROMO=false&interfaceConfig.HIDE_INVITE_MORE_HEADER=true&interfaceConfig.SHOW_BRAND_WATERMARK=false&interfaceConfig.SHOW_JITSI_WATERMARK=false&interfaceConfig.SHOW_POWERED_BY=false&interfaceConfig.SHOW_PROMOTIONAL_CLOSE_PAGE=false&interfaceConfig.SHOW_WATERMARK_FOR_GUESTS=false&interfaceConfig.TOOLBAR_BUTTONS=%5B%22microphone%22%2C%22camera%22%2C%22closedcaptions%22%2C%22desktop%22%2C%22fullscreen%22%2C%22fodeviceselection%22%2C%22hangup%22%2C%22profile%22%2C%22chat%22%2C%22recording%22%2C%22livestreaming%22%2C%22etherpad%22%2C%22sharedvideo%22%2C%22settings%22%2C%22raisehand%22%2C%22videoquality%22%2C%22filmstrip%22%2C%22feedback%22%2C%22stats%22%2C%22shortcuts%22%2C%22tileview%22%2C%22videobackgroundblur%22%2C%22download%22%2C%22help%22%2C%22mute-everyone%22%5D"
+        name="jitsiConferenceFrame1"
+        allow="camera; microphone; display-capture"
+        width="100%" height="40%"></iframe> -->
   </div>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.slim.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>

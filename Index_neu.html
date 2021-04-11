@@ -1,0 +1,72 @@
+<!--Quellen: 
+https://wiki.selfhtml.org/wiki/HTML/Tutorials/Formulare/Auswahllisten 
+http://www-hera-b.desy.de/subgroup/computing/IT/www/selfhtml/html/frames/anzeige/iframe_verweise.htm
+
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gruppen-Work-Space</title>
+</head>
+<body>
+
+<h1>Gruppen-Work-Space</h1>
+
+<iframe ID="Fensterlein" src="startseite.htm" name="Fensterlein" width="500" height="400" marginheight="10" marginwidth="10" align="right">
+<p>Ihr Browser kann leider keine eingebetteten Frames anzeigen</p>
+</iframe>
+<!--
+<p>
+<a href="willkommen.htm" target="Fensterlein"><b>andere Seiten</b></a><br>
+<a href="startseite.htm" target="Fensterlein"><b>erste Seite</b></a>
+</p>
+
+ -->
+
+
+
+<html lang="de">
+<head>
+<script>
+'use strict';
+
+var Arr_Gruppe = [['Main',	'https://docs.google.com/document/d/1v2pjM45nLPhy760mpEIxG9adLop4lQ4bAHfZ4qXxGBI/edit?usp=sharing',	'https://docs.google.com/spreadsheets/d/1iZDX_WZ4qQfYFSSe1x0SbsqZ_bND3EdgQJs87cK4R20/edit?usp=sharing'],
+ ['Gruppe1',	'https://docs.google.com/document/d/1JXVWEYH78W1RaiX_BfZuPJuNpgR-BOWMr7Mly1NOVhE/edit?usp=sharing',	'https://docs.google.com/spreadsheets/d/1PRWf21KkOu7ax4bOXNWSeMDS19Si2RKhrkyIykTzCq8/edit?usp=sharing'],
+ ['Gruppe2',	'https://docs.google.com/document/d/1jX3XHP3rZlVBV61daLnhZvsjNjtEc2RluIZ_436KbPI/edit?usp=sharing',	'https://docs.google.com/spreadsheets/d/1IsHwmg5T-BN3Rs7PGfWclW7F0_ZMAZzp5XXfowS0YYU/edit?usp=sharing']];
+
+ var JitMeetingLink = 'https://meet.jit.si/' + Arr_Gruppe[0][0] + '-Der-Talk#config.startWithAudioMuted=false&config.startWithVideoMuted=false&config.prejoinPageEnabled=false&interfaceConfig.SHOW_CHROME_EXTENSION_BANNER=false&interfaceConfig.MOBILE_APP_PROMO=false&interfaceConfig.HIDE_INVITE_MORE_HEADER=true&interfaceConfig.SHOW_BRAND_WATERMARK=false&interfaceConfig.SHOW_JITSI_WATERMARK=false&interfaceConfig.SHOW_POWERED_BY=false&interfaceConfig.SHOW_PROMOTIONAL_CLOSE_PAGE=false&interfaceConfig.SHOW_WATERMARK_FOR_GUESTS=false&interfaceConfig.TOOLBAR_BUTTONS=%5B%22microphone%22%2C%22camera%22%2C%22closedcaptions%22%2C%22desktop%22%2C%22fullscreen%22%2C%22fodeviceselection%22%2C%22hangup%22%2C%22profile%22%2C%22chat%22%2C%22recording%22%2C%22livestreaming%22%2C%22etherpad%22%2C%22sharedvideo%22%2C%22settings%22%2C%22raisehand%22%2C%22videoquality%22%2C%22filmstrip%22%2C%22feedback%22%2C%22stats%22%2C%22shortcuts%22%2C%22tileview%22%2C%22videobackgroundblur%22%2C%22download%22%2C%22help%22%2C%22mute-everyone%22%5D%22'
+
+document.addEventListener('DOMContentLoaded', function () {    
+ 	document.DropdownGruppe.GruppeWahl.addEventListener('change', CheckAuswahl);
+     
+    function CheckAuswahl () {
+		var menu = document.DropdownGruppe.GruppeWahl;
+    JitMeetingLink = 'https://meet.jit.si/' + Arr_Gruppe[menu.value][0] + '-Der-Talk#config.startWithAudioMuted=false&config.startWithVideoMuted=false&config.prejoinPageEnabled=false&interfaceConfig.SHOW_CHROME_EXTENSION_BANNER=false&interfaceConfig.MOBILE_APP_PROMO=false&interfaceConfig.HIDE_INVITE_MORE_HEADER=true&interfaceConfig.SHOW_BRAND_WATERMARK=false&interfaceConfig.SHOW_JITSI_WATERMARK=false&interfaceConfig.SHOW_POWERED_BY=false&interfaceConfig.SHOW_PROMOTIONAL_CLOSE_PAGE=false&interfaceConfig.SHOW_WATERMARK_FOR_GUESTS=false&interfaceConfig.TOOLBAR_BUTTONS=%5B%22microphone%22%2C%22camera%22%2C%22closedcaptions%22%2C%22desktop%22%2C%22fullscreen%22%2C%22fodeviceselection%22%2C%22hangup%22%2C%22profile%22%2C%22chat%22%2C%22recording%22%2C%22livestreaming%22%2C%22etherpad%22%2C%22sharedvideo%22%2C%22settings%22%2C%22raisehand%22%2C%22videoquality%22%2C%22filmstrip%22%2C%22feedback%22%2C%22stats%22%2C%22shortcuts%22%2C%22tileview%22%2C%22videobackgroundblur%22%2C%22download%22%2C%22help%22%2C%22mute-everyone%22%5D%22';    
+    document.getElementById("Fensterlein").src = JitMeetingLink;
+    }
+});
+</script>
+	
+<style>
+output {
+	font-family: courier;
+	font-size: 2em;
+	color: #c32e04;
+}
+</style>
+</head>
+<body>
+ <form name="DropdownGruppe">
+  <label>Bitte wählen deine Gruppe:
+    <select name="GruppeWahl">
+      <option value="0">Main</option>
+      <option value="1">Gruppe 1</option>
+      <option value="2">Gruppe 2</option>
+    </select>
+  </label>
+</form>
+<p><output> </output></p>   
+</body>
+</html>
+</body>
+</html>
