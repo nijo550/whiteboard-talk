@@ -1,125 +1,135 @@
+
+<!DOCTYPE html>
 <html>
-<! --  thanks to albancho >
-<head>
-  <style>
-    body {
-      background-color: #6800E7;
-      margin: 0em;
-      padding: 0em;
-    }
-
-    .my-game-wrapper {
-      position: relative;
-      display: block;
-      margin: auto;
-      height: 60vh;
-    }
-
-    iframe {
-      border: none;
-    }
-
-    .wrapper {
-      text-align: center
-    }
-  </style>
-</head>
-
-<body>
-
-  <!DOCTYPE html>
-  <html lang="de">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Beispiel:SELFHTML-Beispiel-Grundlayout.css">
-  
-  <script>
-  'use strict';
-  document.addEventListener('DOMContentLoaded', function () {
-   
-     document.Testform.Pizza.addEventListener('change', CheckAuswahl);
-   
-      function CheckAuswahl () {
-      var menu = document.Testform.Pizza;
-      document.querySelector('output').innerHTML = menu.options[menu.selectedIndex].value;	
-
-      if(menu.value == "P102"){
-        
-        <a href="https://nijo550.github.io/" target="Fensterlein"></a>
-      
-        alert("test2");
-
-      }	
-      }
-  
-  });
-  </script>
-  <style>
-  output {
-    font-family: courier;
-    font-size: 2em;
-    color: #c32e04;
-  }
-  </style>
-    <title>select-Menu mit value</title>
+    <title>Google Sheets API Quickstart</title>
+    <meta charset="utf-8" />
   </head>
-  <html>
-    <head>
-    <title>Eigenschaften eingebetteter Frames</title>
-    </head>
-    <body>
-    
-    <h1>Fernsteuerung</h1>
-    
-    <iframe src="startseite.htm" name="Fensterlein" width="500" height="400" marginheight="10" marginwidth="10" align="right">
-    <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen</p>
-    </iframe>
-    <p>
-    <a href="https://nijo550.github.io/" target="Fensterlein"><b>andere Seite</b></a><br>
-    <a href="google.de" target="Fensterlein"><b>erste Seite</b></a>
-    </p>
-    
-    </body>
-    </html>
   <body>
+    <p>Google Sheets API Quickstart</p>
 
-    
-    <h1>select-Menu mit value</h1>
-   
-   <form name="Testform">
-    <label>Bitte wählen Sie Ihre Pizza-Bestellung:
-      <select name="Pizza"> <!-- size=5 führt zu Multibox-->
-        <option value="P101">Gruppe1</option>
-        <option value="P102">Gruppe2</option>
-        <option value="P103">Pizza Mare</option>
-        <option value="P104">Pizza Tonno</option>
-        <option value="P105">Pizza Mexicana</option>
-        <option value="P106">Pizza Regina</option>
-        <option value="P107">Pizza della Casa</option>
-        <option value="P108">Pizza Calzone</option>
-        <option value="P109">Pizza con tutto</option>
-      </select>
-    </label>
-  </form>
-      
-  <p><output> </output></p>   
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="signout_button" style="display: none;">Sign Out</button>
+
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+
+    <script type="text/javascript">
+      // Client ID and API key from the Developer Console
+      var CLIENT_ID = '151646033854-cfjgfrmcnp95vvph6adbdupoc676eaoh.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyCJy6KdB6pyZNjiJCn-hi8buZ6L4Xm31oU';
+
+      // Array of API discovery doc URLs for APIs used by the quickstart
+      var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      var SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
+
+      var authorizeButton = document.getElementById('authorize_button');
+      var signoutButton = document.getElementById('signout_button');
+
+      /**
+       *  On load, called to load the auth2 library and API client library.
+       */
+      function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+      }
+
+      /**
+       *  Initializes the API client library and sets up sign-in state
+       *  listeners.
+       */
+      function initClient() {
+        gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES
+        }).then(function () {
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          authorizeButton.onclick = handleAuthClick;
+          signoutButton.onclick = handleSignoutClick;
+        }, function(error) {
+          appendPre(JSON.stringify(error, null, 2));
+        });
+      }
+
+      /**
+       *  Called when the signed in status changes, to update the UI
+       *  appropriately. After a sign-in, the API is called.
+       */
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          authorizeButton.style.display = 'none';
+          signoutButton.style.display = 'block';
+          listMajors();
+        } else {
+          authorizeButton.style.display = 'block';
+          signoutButton.style.display = 'none';
+        }
+      }
+
+      /**
+       *  Sign in the user upon button click.
+       */
+      function handleAuthClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+      }
+
+      /**
+       *  Sign out the user upon button click.
+       */
+      function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+      }
+
+      /**
+       * Append a pre element to the body containing the given message
+       * as its text node. Used to display the results of the API call.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendPre(message) {
+        var pre = document.getElementById('content');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+
+      /**
+       * Print the names and majors of students in a sample spreadsheet:
+       * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+       */
+      function listMajors() {
+        gapi.client.sheets.spreadsheets.values.get({
+          spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+          range: 'Class Data!A2:E',
+        }).then(function(response) {
+          var range = response.result;
+          if (range.values.length > 0) {
+            appendPre('Name, Major:');
+            for (i = 0; i < range.values.length; i++) {
+              var row = range.values[i];
+              // Print columns A and E, which correspond to indices 0 and 4.
+              appendPre(row[0] + ', ' + row[4]);
+            }
+          } else {
+            appendPre('No data found.');
+          }
+        }, function(response) {
+          appendPre('Error: ' + response.result.error.message);
+        });
+      }
+
+    </script>
+
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
   </body>
-  </html>
-
-  <div class="wrapper">
-    <iframe id="my-game-wrapper" src="http://xxxxxxxxxxxxxxx"
-      width="100%"
-      frameborder="none"
-      seamless="seamless"
-      allowfullscreen="true"
-      scrolling="no"></iframe>
-    <!--
-      <iframe src="https://meet.jit.si/MY-JITSI-ROOM-NAME#config.startWithAudioMuted=false&config.startWithVideoMuted=false&config.prejoinPageEnabled=false&interfaceConfig.SHOW_CHROME_EXTENSION_BANNER=false&interfaceConfig.MOBILE_APP_PROMO=false&interfaceConfig.HIDE_INVITE_MORE_HEADER=true&interfaceConfig.SHOW_BRAND_WATERMARK=false&interfaceConfig.SHOW_JITSI_WATERMARK=false&interfaceConfig.SHOW_POWERED_BY=false&interfaceConfig.SHOW_PROMOTIONAL_CLOSE_PAGE=false&interfaceConfig.SHOW_WATERMARK_FOR_GUESTS=false&interfaceConfig.TOOLBAR_BUTTONS=%5B%22microphone%22%2C%22camera%22%2C%22closedcaptions%22%2C%22desktop%22%2C%22fullscreen%22%2C%22fodeviceselection%22%2C%22hangup%22%2C%22profile%22%2C%22chat%22%2C%22recording%22%2C%22livestreaming%22%2C%22etherpad%22%2C%22sharedvideo%22%2C%22settings%22%2C%22raisehand%22%2C%22videoquality%22%2C%22filmstrip%22%2C%22feedback%22%2C%22stats%22%2C%22shortcuts%22%2C%22tileview%22%2C%22videobackgroundblur%22%2C%22download%22%2C%22help%22%2C%22mute-everyone%22%5D"
-        name="jitsiConferenceFrame1"
-        allow="camera; microphone; display-capture"
-        width="100%" height="40%"></iframe> -->
-  </div>
-</body>
-
 </html>
