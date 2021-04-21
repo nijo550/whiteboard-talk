@@ -106,7 +106,7 @@
        */
       function listMajors() {
         gapi.client.sheets.spreadsheets.values.get({
-          spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+          spreadsheetId: '2PACX-1vRlNKdeeYJp8as9DASM8gR8KfkcUEYL31jKhZn3Of_EN5b8J7QA-91IpabtLwG5r-wN8E-7hjRXZ301',
           range: 'Class Data!A2:E',
         }).then(function(response) {
           var range = response.result;
@@ -124,7 +124,7 @@
           appendPre('Error: ' + response.result.error.message);
         });
       }
-
+alert(appendpre(row[0] + ', ' + row[4]));
     </script>
 
     <script async defer src="https://apis.google.com/js/api.js"
